@@ -38,6 +38,16 @@ export class Keystore {
     }
 
     /**
+     * Reload keystore from disk. Used for hot-reload via SIGUSR1
+     * so that keys added by external tools are picked up without restart.
+     */
+    reload(): void {
+        if (this._exists()) {
+            this._keystore = this._load()
+        }
+    }
+
+    /**
      * @method addPublicKey
      * @param  {string} callsign
      * @param  {string} pubkeyHex

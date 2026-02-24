@@ -370,6 +370,12 @@ async function main() {
     // validateKeystoreFile(conf)
     const ks: Keystore = new Keystore(conf.keystoreFile)
 
+    // hot-reload keystore on SIGUSR1 (used by external key management tools)
+    process.on('SIGUSR1', () => {
+        ks.reload()
+        console.error('[chattervox] Keystore reloaded via SIGUSR1')
+    })
+
     // if this subcommand is any of the commands that signs something
     if (['chat', 'send', 'receive'].includes(args.subcommand)) {
         validateSigningKeyExists(conf, ks)

@@ -11,7 +11,7 @@ let proc: ChildProcess
 export async function main(args: any, conf: Config, ks: Keystore): Promise<number> {
 
     const promises: Promise<any>[] = []
-    const messenger = new Messenger(conf)
+    const messenger = new Messenger(conf, ks)
 
     messenger.on('close', () => {
         console.error(`The connection to KISS TNC at ${conf.kissPort} is now closed. Exiting.`)

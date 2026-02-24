@@ -25,7 +25,7 @@ function printPacket(message: MessageEvent, raw: boolean): void {
 
 export async function main(args: any, conf: Config, ks: Keystore): Promise<number> {
 
-    const messenger = new Messenger(conf)
+    const messenger = new Messenger(conf, ks)
 
     messenger.on('close', () => {
         console.error(`The connection to KISS TNC at ${conf.kissPort} is now closed. Exiting.`)

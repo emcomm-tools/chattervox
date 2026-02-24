@@ -6,7 +6,7 @@ import { stationToCallsignSSID, isBrokenPipeError } from '../utils';
 
 export async function main(args: any, conf: Config, ks: Keystore): Promise<number> {
 
-    const messenger = new Messenger(conf)
+    const messenger = new Messenger(conf, ks)
 
     try {
         await messenger.openTNC()

@@ -27,16 +27,24 @@ export class Messenger extends EventEmitter {
     private config: Config
     private recentlySent = new Map<string, number>()
 
-    constructor(config: Config) {
+    constructor(config: Config, ks?: Keystore) {
         super()
         this.config = config
-        this.ks = new Keystore(this.config.keystoreFile)
+        this.ks = ks || new Keystore(this.config.keystoreFile)
         if (this.ks.getKeyPairs(config.callsign).length === 0) {
             this.ks.genKeyPair(config.callsign)
         }
 
         // device, baud_rate
         this.tnc = this._createTNC(config.kissPort, config.kissBaud)
+    }
+
+    /**
+     * Reload the keystore from disk without disconnecting the TNC.
+     * Called via SIGUSR1 to pick up keys added by external tools.
+     */
+    reloadKeystore(): void {
+        this.ks.reload()
     }
 
     openTNC(): Promise<void> {
