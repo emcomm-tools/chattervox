@@ -38,6 +38,15 @@ function getColorFunction(callsign: string): TerminalFunction {
 export function enter(callsign?: string): void {
     term.fullscreen()
     term.windowTitle(callsign ? `Chattervox - ${callsign}` : 'Chattervox')
+    term.bold.cyan('Chattervox')
+    term(' / provided by ')
+    term.bold.green('emcomm-tools')
+    term(' / ')
+    if (callsign) term.bold.yellow(callsign)
+    term('\n')
+    const bannerLen = ('Chattervox / provided by emcomm-tools / ' + (callsign || '')).length
+    term.dim('─'.repeat(Math.min(term.width, bannerLen)))
+    term('\n')
 }
 
 export function exit(code: number): void {
