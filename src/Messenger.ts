@@ -1,4 +1,4 @@
-import KISS_TNC from 'kiss-tnc'
+import KISS_TNC from './kiss-tnc.js'
 import { EventEmitter } from 'events'
 import { Keystore } from './Keystore.js'
 import { Packet, Station } from './Packet.js'
