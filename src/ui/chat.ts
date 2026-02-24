@@ -35,8 +35,9 @@ function getColorFunction(callsign: string): TerminalFunction {
     return colorMap[callsign]
 }
 
-export function enter(): void {
+export function enter(callsign?: string): void {
     term.fullscreen()
+    term.windowTitle(callsign ? `Chattervox - ${callsign}` : 'Chattervox')
 }
 
 export function exit(code: number): void {

@@ -37,11 +37,11 @@ export async function main(args: any, conf: Config, ks: Keystore): Promise<numbe
         }
     })
 
-    ui.enter()
+    const callsignSSID: string = stationToCallsignSSID({ callsign: conf.callsign, ssid: conf.ssid })
+    ui.enter(callsignSSID)
 
     // only sign if the user's config has a signing key
     const sign: boolean = typeof conf.signingKey === 'string'
-    const callsignSSID: string = stationToCallsignSSID({ callsign: conf.callsign, ssid: conf.ssid })
     await ui.inputLoop(callsignSSID, messenger, sign)
 
     return 0
