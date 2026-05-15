@@ -40,11 +40,11 @@ export function enter(callsign?: string): void {
     term.windowTitle(callsign ? `Chattervox - ${callsign}` : 'Chattervox')
     term.bold.cyan('Chattervox')
     term(' / provided by ')
-    term.bold.green('emcomm-tools')
+    term.bold.green('LiaisonOS')
     term(' / ')
     if (callsign) term.bold.yellow(callsign)
     term('\n')
-    const bannerLen = ('Chattervox / provided by emcomm-tools / ' + (callsign || '')).length
+    const bannerLen = ('Chattervox / provided by LiaisonOS / ' + (callsign || '')).length
     term.dim('─'.repeat(Math.min(term.width, bannerLen)))
     term('\n')
 }
