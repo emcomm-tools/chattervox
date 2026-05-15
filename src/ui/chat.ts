@@ -36,7 +36,7 @@ function getColorFunction(callsign: string): TerminalFunction {
 }
 
 export function enter(callsign?: string): void {
-    term.fullscreen()
+    term.fullscreen({ noAlternate: true })
     term.windowTitle(callsign ? `Chattervox - ${callsign}` : 'Chattervox')
     term.bold.cyan('Chattervox')
     term(' / provided by ')
